@@ -58,5 +58,32 @@ namespace MyAPI.Controllers
 
         //PUT or Update the data
 
+        public IHttpActionResult PutCustomer(StudentDisplay student)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("This is invalid Model. Please recheck");
+
+            using( var x = new WebAPI_PeopleEntities())
+            {
+                var checkExistingStudent = x.Students.Where(s => s.id == student.Id).FirstOrDefault<Student>();
+
+                if (checkExistingStudent != null)
+                {
+                    checkExistingStudent.name = student.Name;
+                    checkExistingStudent.country = student.Country;
+                    checkExistingStudent.phone = student.Phone;
+                    checkExistingStudent.tempadd = student.TempAdd;
+
+                    x.SaveChanges();
+                }
+                else
+                    return NotFound();
+            }
+
+            return Ok();
+        }
+
+
+        //Delete a record
     }
 }
