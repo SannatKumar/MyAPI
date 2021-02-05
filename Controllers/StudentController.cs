@@ -85,5 +85,20 @@ namespace MyAPI.Controllers
 
 
         //Delete a record in the database
+
+        public IHttpActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Please enter valid Customer Id");
+
+            using (var x = new WebAPI_PeopleEntities())
+            {
+                var student = x.Students.Where(s => s.id == id).FirstOrDefault();
+
+                x.Entry(student).State = System.Data.Entity.EntityState.Deleted;
+                x.SaveChanges();
+            }
+            return Ok();
+        }
     }
 }
