@@ -84,6 +84,6 @@ namespace MyAPI.Controllers
         }
 
 
-        //Delete a record
+        //Delete a record in the database
     }
 }
