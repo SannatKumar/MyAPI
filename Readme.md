@@ -1,6 +1,6 @@
 ﻿#Description
 
-This is an Web API build using ASP.NET web API templates.
+This is a Web API build using ASP.NET web API templates.
 The program provides api for crud operation.
 The Base Api URL is https://localhost:44373/api/student
 
