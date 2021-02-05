@@ -32,7 +32,31 @@ namespace MyAPI.Controllers
             if (students.Count == 0)
                 return NotFound();
             return Ok(students);
-
         }
+
+        //Post The data
+        public IHttpActionResult PostNewStudent(StudentDisplay student)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid Data. Please Recheck!");
+
+            using (var x = new WebAPI_PeopleEntities())
+            {
+                x.Students.Add(new Student()
+                {
+                    name = student.Name,
+                    email = student.Email,
+                    country = student.Country,
+                    phone = student.Phone,
+                    tempadd = student.TempAdd
+                });
+
+                x.SaveChanges();
+            }
+            return Ok();
+        }
+
+        //PUT or Update the data
+
     }
 }
